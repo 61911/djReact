@@ -13,7 +13,7 @@ class CustomForm extends Component {
     const title = event.target.elements.title.value;
     const content = event.target.elements.content.value;
 
-    let url = "http://127.0.0.1:8000/api/";
+    let url = "http://djreact-blog.herokuapp.com/api/";
     let form_data = new FormData();
     form_data.append("id", articleID);
     form_data.append("author", author);
@@ -37,7 +37,7 @@ class CustomForm extends Component {
           .catch((err) => console.log(err));
       case "put":
         return axios
-          .put(`http://127.0.0.1:8000/api/${articleID}/`, {
+          .put(`http://djreact-blog.herokuapp.com/api/${articleID}/`, {
             author: author,
             title: title,
             content: content,

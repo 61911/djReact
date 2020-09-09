@@ -9,7 +9,7 @@ class ArticleList extends Component {
   };
 
   componentDidMount() {
-    axios.get(`http://127.0.0.1:8000/api/`).then((res) => {
+    axios.get(`http://djreact-blog.herokuapp.com/api/`).then((res) => {
       this.setState({
         articles: res.data,
       });

@@ -11,11 +11,13 @@ class ArticleDetailView extends Component {
 
   componentDidMount() {
     const articleID = this.props.match.params.articleID;
-    axios.get(`http://127.0.0.1:8000/api/${articleID}`).then((res) => {
-      this.setState({
-        article: res.data,
+    axios
+      .get(`http://djreact-blog.herokuapp.com/api/${articleID}`)
+      .then((res) => {
+        this.setState({
+          article: res.data,
+        });
       });
-    });
   }
   render() {
     return (
