@@ -1,71 +1,72 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import * as actions from "../../store/actions/auth";
 
-class NavBar extends Component {
-  render() {
-    return (
-      <div>
-        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-          <div class="container">
-            <Link class="navbar-brand mr-4" to="/">
-              Django React Blog
-            </Link>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarToggle"
-              aria-controls="navbarToggle"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+} from "reactstrap";
+
+const NavBar = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <div>
+      <Navbar
+        className="navbar navbar-expand-md navbar-dark bg-steel fixed-top"
+        light
+        expand="md"
+      >
+        <NavbarBrand href="/">Django React Blog</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <Link className="nav-item nav-link" to="/" href="/">
+                Home
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link
+                className="nav-item nav-link"
+                to="/create/"
+                style={{ color: "#cbd5db" }}
+              >
+                create
+              </Link>
+            </NavItem>
+          </Nav>
+          {props.isAuthenticated ? (
+            <Link
+              className="nav-item nav-link"
+              to="/"
+              style={{ color: "#cbd5db" }}
+              onClick={props.logout}
             >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggle">
-              <div class="navbar-nav mr-auto">
-                <Link
-                  class="nav-item nav-link"
-                  to="/"
-                  style={{ color: "#cbd5db" }}
-                >
-                  Home
-                </Link>
-                <Link
-                  class="nav-item nav-link"
-                  to="/create/"
-                  style={{ color: "#cbd5db" }}
-                >
-                  create
-                </Link>
-              </div>
-              {this.props.isAuthenticated ? (
-                <Link
-                  class="nav-item nav-link"
-                  to="/"
-                  style={{ color: "#cbd5db" }}
-                  onClick={this.props.logout}
-                >
-                  Logout
-                </Link>
-              ) : (
-                <Link
-                  class="nav-item nav-link"
-                  to="/login/"
-                  style={{ color: "#cbd5db" }}
-                >
-                  Login
-                </Link>
-              )}
-            </div>
-          </div>
-        </nav>
-      </div>
-    );
-  }
-}
+              Logout
+            </Link>
+          ) : (
+            <Link
+              className="nav-item nav-link"
+              to="/login/"
+              style={{ color: "#cbd5db" }}
+            >
+              Login
+            </Link>
+          )}
+        </Collapse>
+      </Navbar>
+    </div>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -74,3 +75,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(NavBar);
+
