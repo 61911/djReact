@@ -26,7 +26,7 @@ SECRET_KEY = 'b4%2$t0^9eh)+tknsih0e2sqjthd66g@60gbca@1b6-*flnt2i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://djreact-blog.herokuapp.com/']
+ALLOWED_HOSTS = ['djreact-blog.herokuapp.com']
 
 
 # Application definition
